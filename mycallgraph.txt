@@ -1,7 +1,7 @@
 
 Static Call Graph for image .\obj\BasicUI.axf
 
-#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Wed Oct 28 09:40:04 2026
+#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Wed Oct 28 10:03:25 2026
 Maximum Stack Usage =        128 bytes + Unknown(Cycles, Untraceable Function Pointers)
 Call chain for Maximum Stack Depth:
 main => __aeabi_dmul => _double_epilogue => _double_round
@@ -93,20 +93,69 @@ Global Symbols
 
 	__rt_final_exit (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-	Init_RGB_LEDs (Thumb, 84 bytes, Stack size 0 bytes, leds.o(.text))
+	Misc (Thumb, 48 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+	Convert (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+	ADC0_IRQHandler (Thumb, 28 bytes, Stack size 0 bytes, main.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Calculate (Thumb, 68 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_d2f
+			 * __aeabi_dmul
+			 * __aeabi_ddiv
+			 * __aeabi_ui2d
+
+	Print (Thumb, 108 bytes, Stack size 24 bytes, main.o(.text))
+
+		[Stack]
+
+			Max Depth = 60			Call Chain = Print => __aeabi_fadd => _float_epilogue
+
+
+		[Calls]
+
+			 * __2printf
+			 * __aeabi_fdiv
+			 * __aeabi_fadd
+			 * __aeabi_f2d
+			 * Control_RGB_LEDs
 
 		[Called By]
 
 			 * main
 
-	Control_RGB_LEDs (Thumb, 76 bytes, Stack size 0 bytes, leds.o(.text))
+	main (Thumb, 280 bytes, Stack size 0 bytes, main.o(.text))
 
-		[Called By]
+		[Stack]
 
-			 * LPTMR0_IRQHandler
-			 * main
+			Max Depth = 128			Call Chain = main => __aeabi_dmul => _double_epilogue => _double_round
+
+
+		[Calls]
+
+			 * __2printf
+			 * Start_LPTMR
+			 * Delay
+			 * Init_LPTMR
+			 * Init_DAC
+			 * Init_UART2
+			 * Init_ADC
+			 * Init_RGB_LEDs
+			 * Control_RGB_LEDs
 			 * Print
-			 * Calibrate_ADC
+			 * __aeabi_d2f
+			 * __aeabi_dmul
+			 * __aeabi_ddiv
+			 * __aeabi_ui2d
+
+		[Address Reference Count : 1]
+			 * entry9a.o(.ARM.Collect$$$$0000000B)
 
 	Delay (Thumb, 28 bytes, Stack size 4 bytes, delay.o(.text))
 
@@ -118,6 +167,27 @@ Global Symbols
 		[Called By]
 
 			 * main
+
+	__I$use$fp (Thumb, 0 bytes, Stack size unknown bytes, iusefp.o(.text), UNUSED)
+
+	__scatterload_null (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+	__scatterload_copy (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+	Init_RGB_LEDs (Thumb, 84 bytes, Stack size 0 bytes, leds.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Control_RGB_LEDs (Thumb, 76 bytes, Stack size 0 bytes, leds.o(.text))
+
+		[Called By]
+
+			 * Calibrate_ADC
+			 * LPTMR0_IRQHandler
+			 * main
+			 * Print
 
 	fputc (Thumb, 20 bytes, Stack size 0 bytes, uart.o(.text))
 
@@ -182,6 +252,18 @@ Global Symbols
 		[Called By]
 
 			 * LPTMR0_IRQHandler
+
+	Init_ADC (Thumb, 48 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Calibrate_ADC (Thumb, 140 bytes, Stack size 8 bytes, adc.o(.text), UNUSED)
+
+		[Calls]
+
+			 * Control_RGB_LEDs
 
 	Reset_Handler (Thumb, 12 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
 
@@ -407,83 +489,6 @@ Global Symbols
 
 		[Address Reference Count : 1]
 			 * startup_mkl25z4.o(RESET)
-
-	__I$use$fp (Thumb, 0 bytes, Stack size unknown bytes, iusefp.o(.text), UNUSED)
-
-	__scatterload_copy (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
-
-	__scatterload_null (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
-
-	Misc (Thumb, 48 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
-
-	Init_ADC (Thumb, 48 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
-
-	Calibrate_ADC (Thumb, 140 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
-
-		[Calls]
-
-			 * Control_RGB_LEDs
-
-	Convert (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
-
-	ADC0_IRQHandler (Thumb, 28 bytes, Stack size 0 bytes, main.o(.text))
-
-		[Address Reference Count : 1]
-			 * startup_mkl25z4.o(RESET)
-
-	Calculate (Thumb, 68 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
-
-		[Calls]
-
-			 * __aeabi_d2f
-			 * __aeabi_dmul
-			 * __aeabi_ddiv
-			 * __aeabi_ui2d
-
-	Print (Thumb, 108 bytes, Stack size 24 bytes, main.o(.text))
-
-		[Stack]
-
-			Max Depth = 60			Call Chain = Print => __aeabi_fadd => _float_epilogue
-
-
-		[Calls]
-
-			 * __2printf
-			 * __aeabi_fdiv
-			 * __aeabi_fadd
-			 * __aeabi_f2d
-			 * Control_RGB_LEDs
-
-		[Called By]
-
-			 * main
-
-	main (Thumb, 316 bytes, Stack size 0 bytes, main.o(.text))
-
-		[Stack]
-
-			Max Depth = 128			Call Chain = main => __aeabi_dmul => _double_epilogue => _double_round
-
-
-		[Calls]
-
-			 * __2printf
-			 * Start_LPTMR
-			 * Delay
-			 * Init_LPTMR
-			 * Init_DAC
-			 * Init_UART2
-			 * Init_RGB_LEDs
-			 * Print
-			 * __aeabi_d2f
-			 * __aeabi_dmul
-			 * __aeabi_ddiv
-			 * __aeabi_ui2d
-			 * Control_RGB_LEDs
-
-		[Address Reference Count : 1]
-			 * entry9a.o(.ARM.Collect$$$$0000000B)
 
 	SystemInit (Thumb, 188 bytes, Stack size 16 bytes, system_mkl25z4.o(.text))
 
