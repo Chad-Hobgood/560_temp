@@ -1,0 +1,893 @@
+
+Static Call Graph for image .\obj\BasicUI.axf
+
+#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Wed Oct 28 09:40:04 2026
+Maximum Stack Usage =        128 bytes + Unknown(Cycles, Untraceable Function Pointers)
+Call chain for Maximum Stack Depth:
+main => __aeabi_dmul => _double_epilogue => _double_round
+
+
+Mutually Recursive functions
+ * NMI_Handler => NMI_Handler
+ * HardFault_Handler => HardFault_Handler
+ * SVC_Handler => SVC_Handler
+ * PendSV_Handler => PendSV_Handler
+ * SysTick_Handler => SysTick_Handler
+
+
+Function Pointers
+
+ * ADC0_IRQHandler from main.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * CMP0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DAC0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DMA0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DMA1_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DMA2_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DMA3_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * DefaultISR from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(.text)
+ * FTFA_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * HardFault_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * I2C0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * I2C1_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * LLWU_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * LPTMR0_IRQHandler from timers.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * LVD_LVW_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * MCG_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * NMI_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * PIT_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * PORTA_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * PORTD_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * PendSV_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * RTC_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * RTC_Seconds_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * Reserved20_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * Reserved39_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * Reserved45_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * Reset_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * SPI0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * SPI1_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * SVC_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * SysTick_Handler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * SystemInit from system_mkl25z4.o(.text) referenced from startup_mkl25z4.o(.text)
+ * TPM0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * TPM1_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * TPM2_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * TSI0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * UART0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * UART1_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * UART2_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * USB0_IRQHandler from startup_mkl25z4.o(.text) referenced from startup_mkl25z4.o(RESET)
+ * __main from entry.o(.ARM.Collect$$$$00000000) referenced from startup_mkl25z4.o(.text)
+ * fputc from uart.o(.text) referenced from printfa.o(i.__0printf)
+ * main from main.o(.text) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
+
+
+Global Symbols
+
+	__main (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(.text)
+
+	_main_stk (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+
+	_main_scatterload (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+
+		[Calls]
+
+			 * __scatterload
+
+	__main_after_scatterload (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+
+		[Called By]
+
+			 * __scatterload
+
+	_main_clock (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+
+	_main_cpp_init (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+
+	_main_init (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+
+	__rt_final_cpp (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+
+	__rt_final_exit (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+
+	Init_RGB_LEDs (Thumb, 84 bytes, Stack size 0 bytes, leds.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Control_RGB_LEDs (Thumb, 76 bytes, Stack size 0 bytes, leds.o(.text))
+
+		[Called By]
+
+			 * LPTMR0_IRQHandler
+			 * main
+			 * Print
+			 * Calibrate_ADC
+
+	Delay (Thumb, 28 bytes, Stack size 4 bytes, delay.o(.text))
+
+		[Stack]
+
+			Max Depth = 4			Call Chain = Delay
+
+
+		[Called By]
+
+			 * main
+
+	fputc (Thumb, 20 bytes, Stack size 0 bytes, uart.o(.text))
+
+		[Address Reference Count : 1]
+			 * printfa.o(i.__0printf)
+
+	fgetc (Thumb, 12 bytes, Stack size 0 bytes, uart.o(.text), UNUSED)
+
+	Init_UART2 (Thumb, 76 bytes, Stack size 0 bytes, uart.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Init_LPTMR (Thumb, 72 bytes, Stack size 16 bytes, timers.o(.text))
+
+		[Stack]
+
+			Max Depth = 32			Call Chain = Init_LPTMR => __aeabi_uidiv
+
+
+		[Calls]
+
+			 * __aeabi_uidiv
+
+		[Called By]
+
+			 * main
+
+	Start_LPTMR (Thumb, 12 bytes, Stack size 0 bytes, timers.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Stop_LPTMR (Thumb, 12 bytes, Stack size 0 bytes, timers.o(.text), UNUSED)
+
+	LPTMR0_IRQHandler (Thumb, 160 bytes, Stack size 16 bytes, timers.o(.text))
+
+		[Stack]
+
+			Max Depth = 32			Call Chain = LPTMR0_IRQHandler => __aeabi_idiv
+
+
+		[Calls]
+
+			 * Set_DAC
+			 * Control_RGB_LEDs
+			 * __aeabi_idiv
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Init_DAC (Thumb, 56 bytes, Stack size 0 bytes, dac.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Set_DAC (Thumb, 8 bytes, Stack size 0 bytes, dac.o(.text))
+
+		[Called By]
+
+			 * LPTMR0_IRQHandler
+
+	Reset_Handler (Thumb, 12 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	NMI_Handler (Thumb, 2 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Calls]
+
+			 * NMI_Handler
+
+		[Called By]
+
+			 * NMI_Handler
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	HardFault_Handler (Thumb, 2 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Calls]
+
+			 * HardFault_Handler
+
+		[Called By]
+
+			 * HardFault_Handler
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	SVC_Handler (Thumb, 2 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Calls]
+
+			 * SVC_Handler
+
+		[Called By]
+
+			 * SVC_Handler
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	PendSV_Handler (Thumb, 2 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Calls]
+
+			 * PendSV_Handler
+
+		[Called By]
+
+			 * PendSV_Handler
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	SysTick_Handler (Thumb, 2 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Calls]
+
+			 * SysTick_Handler
+
+		[Called By]
+
+			 * SysTick_Handler
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	CMP0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DAC0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DMA0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DMA1_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DMA2_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DMA3_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	DefaultISR (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(.text)
+
+	FTFA_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	I2C0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	I2C1_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	LLWU_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	LVD_LVW_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	MCG_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	PIT_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	PORTA_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	PORTD_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	RTC_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	RTC_Seconds_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Reserved20_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Reserved39_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Reserved45_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	SPI0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	SPI1_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	TPM0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	TPM1_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	TPM2_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	TSI0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	UART0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	UART1_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	UART2_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	USB0_IRQHandler (Thumb, 0 bytes, Stack size 0 bytes, startup_mkl25z4.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	__I$use$fp (Thumb, 0 bytes, Stack size unknown bytes, iusefp.o(.text), UNUSED)
+
+	__scatterload_copy (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+	__scatterload_null (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+	Misc (Thumb, 48 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+	Init_ADC (Thumb, 48 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+	Calibrate_ADC (Thumb, 140 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
+
+		[Calls]
+
+			 * Control_RGB_LEDs
+
+	Convert (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+
+	ADC0_IRQHandler (Thumb, 28 bytes, Stack size 0 bytes, main.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Calculate (Thumb, 68 bytes, Stack size 8 bytes, main.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_d2f
+			 * __aeabi_dmul
+			 * __aeabi_ddiv
+			 * __aeabi_ui2d
+
+	Print (Thumb, 108 bytes, Stack size 24 bytes, main.o(.text))
+
+		[Stack]
+
+			Max Depth = 60			Call Chain = Print => __aeabi_fadd => _float_epilogue
+
+
+		[Calls]
+
+			 * __2printf
+			 * __aeabi_fdiv
+			 * __aeabi_fadd
+			 * __aeabi_f2d
+			 * Control_RGB_LEDs
+
+		[Called By]
+
+			 * main
+
+	main (Thumb, 316 bytes, Stack size 0 bytes, main.o(.text))
+
+		[Stack]
+
+			Max Depth = 128			Call Chain = main => __aeabi_dmul => _double_epilogue => _double_round
+
+
+		[Calls]
+
+			 * __2printf
+			 * Start_LPTMR
+			 * Delay
+			 * Init_LPTMR
+			 * Init_DAC
+			 * Init_UART2
+			 * Init_RGB_LEDs
+			 * Print
+			 * __aeabi_d2f
+			 * __aeabi_dmul
+			 * __aeabi_ddiv
+			 * __aeabi_ui2d
+			 * Control_RGB_LEDs
+
+		[Address Reference Count : 1]
+			 * entry9a.o(.ARM.Collect$$$$0000000B)
+
+	SystemInit (Thumb, 188 bytes, Stack size 16 bytes, system_mkl25z4.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = SystemInit
+
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(.text)
+
+	SystemCoreClockUpdate (Thumb, 244 bytes, Stack size 16 bytes, system_mkl25z4.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_uidiv
+
+	__aeabi_fadd (Thumb, 162 bytes, Stack size 24 bytes, fadd.o(.text))
+
+		[Stack]
+
+			Max Depth = 36			Call Chain = __aeabi_fadd => _float_epilogue
+
+
+		[Calls]
+
+			 * _float_round
+			 * _float_epilogue
+
+		[Called By]
+
+			 * __aeabi_frsub
+			 * __aeabi_fsub
+			 * Print
+
+	__aeabi_fsub (Thumb, 8 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_fadd
+
+	__aeabi_frsub (Thumb, 8 bytes, Stack size 0 bytes, fadd.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_fadd
+
+	__aeabi_fdiv (Thumb, 124 bytes, Stack size 16 bytes, fdiv.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = __aeabi_fdiv
+
+
+		[Calls]
+
+			 * _float_round
+
+		[Called By]
+
+			 * Print
+
+	__aeabi_dmul (Thumb, 202 bytes, Stack size 72 bytes, dmul.o(.text))
+
+		[Stack]
+
+			Max Depth = 128			Call Chain = __aeabi_dmul => _double_epilogue => _double_round
+
+
+		[Calls]
+
+			 * _double_epilogue
+
+		[Called By]
+
+			 * _fp_digits
+			 * main
+			 * Calculate
+
+	__aeabi_ddiv (Thumb, 234 bytes, Stack size 40 bytes, ddiv.o(.text))
+
+		[Stack]
+
+			Max Depth = 48			Call Chain = __aeabi_ddiv => _double_round
+
+
+		[Calls]
+
+			 * _double_round
+
+		[Called By]
+
+			 * _fp_digits
+			 * main
+			 * Calculate
+
+	__aeabi_ui2d (Thumb, 24 bytes, Stack size 16 bytes, dfltui.o(.text))
+
+		[Stack]
+
+			Max Depth = 72			Call Chain = __aeabi_ui2d => _double_epilogue => _double_round
+
+
+		[Calls]
+
+			 * _double_epilogue
+
+		[Called By]
+
+			 * main
+			 * Calculate
+
+	__aeabi_f2d (Thumb, 40 bytes, Stack size 0 bytes, f2d.o(.text))
+
+		[Called By]
+
+			 * Print
+
+	__aeabi_d2f (Thumb, 56 bytes, Stack size 8 bytes, d2f.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = __aeabi_d2f
+
+
+		[Calls]
+
+			 * _float_round
+
+		[Called By]
+
+			 * main
+			 * Calculate
+
+	__aeabi_uidiv (Thumb, 0 bytes, Stack size 16 bytes, uidiv_div0.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = __aeabi_uidiv
+
+
+		[Called By]
+
+			 * SystemCoreClockUpdate
+			 * Init_LPTMR
+
+	__aeabi_uidivmod (Thumb, 62 bytes, Stack size 16 bytes, uidiv_div0.o(.text), UNUSED)
+
+		[Called By]
+
+			 * _printf_core
+			 * __aeabi_idivmod$div0
+
+	__aeabi_idiv (Thumb, 0 bytes, Stack size 16 bytes, idiv_div0.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = __aeabi_idiv
+
+
+		[Called By]
+
+			 * LPTMR0_IRQHandler
+
+	__aeabi_idivmod$div0 (Thumb, 74 bytes, Stack size 16 bytes, idiv_div0.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_uidivmod
+
+	__aeabi_uldivmod (Thumb, 96 bytes, Stack size 48 bytes, uldiv.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_llsr
+			 * __aeabi_llsl
+
+		[Called By]
+
+			 * _printf_core
+			 * _fp_digits
+
+	_float_round (Thumb, 16 bytes, Stack size 0 bytes, fepilogue.o(.text))
+
+		[Called By]
+
+			 * __aeabi_fdiv
+			 * __aeabi_fadd
+			 * __aeabi_d2f
+
+	_float_epilogue (Thumb, 114 bytes, Stack size 12 bytes, fepilogue.o(.text))
+
+		[Stack]
+
+			Max Depth = 12			Call Chain = _float_epilogue
+
+
+		[Called By]
+
+			 * __aeabi_fadd
+
+	_double_round (Thumb, 26 bytes, Stack size 8 bytes, depilogue.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = _double_round
+
+
+		[Called By]
+
+			 * _double_epilogue
+			 * __aeabi_dadd
+			 * __aeabi_ddiv
+
+	_double_epilogue (Thumb, 164 bytes, Stack size 48 bytes, depilogue.o(.text))
+
+		[Stack]
+
+			Max Depth = 56			Call Chain = _double_epilogue => _double_round
+
+
+		[Calls]
+
+			 * _double_round
+			 * __aeabi_llsr
+			 * __aeabi_llsl
+			 * __ARM_clz
+
+		[Called By]
+
+			 * __aeabi_dadd
+			 * __aeabi_dmul
+			 * __aeabi_ui2d
+
+	__aeabi_dadd (Thumb, 328 bytes, Stack size 48 bytes, dadd.o(.text), UNUSED)
+
+		[Calls]
+
+			 * _double_round
+			 * _double_epilogue
+			 * __aeabi_lasr
+			 * __aeabi_llsl
+
+		[Called By]
+
+			 * _fp_digits
+			 * __aeabi_drsub
+			 * __aeabi_dsub
+
+	__aeabi_dsub (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_dadd
+
+	__aeabi_drsub (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_dadd
+
+	__aeabi_d2ulz (Thumb, 54 bytes, Stack size 8 bytes, dfixul.o(.text), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_llsr
+			 * __aeabi_llsl
+
+		[Called By]
+
+			 * _fp_digits
+
+	__aeabi_cdrcmple (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
+
+		[Called By]
+
+			 * _fp_digits
+
+	__scatterload (Thumb, 38 bytes, Stack size 0 bytes, init.o(.text))
+
+		[Calls]
+
+			 * __main_after_scatterload
+
+		[Called By]
+
+			 * _main_scatterload
+
+	__scatterload_rt2 (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+
+	__aeabi_llsl (Thumb, 32 bytes, Stack size 8 bytes, llshl.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = __aeabi_llsl
+
+
+		[Called By]
+
+			 * _double_epilogue
+			 * __aeabi_dadd
+			 * __aeabi_d2ulz
+			 * __aeabi_uldivmod
+
+	_ll_shift_l (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
+
+	__aeabi_llsr (Thumb, 34 bytes, Stack size 8 bytes, llushr.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = __aeabi_llsr
+
+
+		[Called By]
+
+			 * _double_epilogue
+			 * __aeabi_d2ulz
+			 * __aeabi_uldivmod
+
+	_ll_ushift_r (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
+
+	__aeabi_lasr (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+
+		[Called By]
+
+			 * __aeabi_dadd
+
+	_ll_sshift_r (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+
+	__0printf (Thumb, 24 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+
+		[Calls]
+
+			 * _printf_core
+
+	__1printf (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+
+	__2printf (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))
+
+		[Stack]
+
+			Max Depth = 24			Call Chain = __2printf
+
+
+		[Called By]
+
+			 * main
+			 * Print
+
+	__c89printf (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+
+	printf (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
+
+	__ARM_clz (Thumb, 46 bytes, Stack size 0 bytes, depilogue.o(i.__ARM_clz))
+
+		[Called By]
+
+			 * _double_epilogue
+
+	__scatterload_zeroinit (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+
+
+Local Symbols
+
+	_fp_digits (Thumb, 344 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
+
+		[Calls]
+
+			 * __aeabi_dadd
+			 * __aeabi_d2ulz
+			 * __aeabi_cdrcmple
+			 * __aeabi_dmul
+			 * __aeabi_ddiv
+			 * __aeabi_uldivmod
+
+		[Called By]
+
+			 * _printf_core
+
+	_printf_core (Thumb, 1754 bytes, Stack size 128 bytes, printfa.o(i._printf_core), UNUSED)
+
+		[Calls]
+
+			 * _printf_pre_padding
+			 * _printf_post_padding
+			 * _fp_digits
+			 * __aeabi_uldivmod
+			 * __aeabi_uidivmod
+
+		[Called By]
+
+			 * __0printf
+
+	_printf_post_padding (Thumb, 32 bytes, Stack size 24 bytes, printfa.o(i._printf_post_padding), UNUSED)
+
+		[Called By]
+
+			 * _printf_core
+
+	_printf_pre_padding (Thumb, 44 bytes, Stack size 40 bytes, printfa.o(i._printf_pre_padding), UNUSED)
+
+		[Called By]
+
+			 * _printf_core
+
+
+Undefined Global Symbols
