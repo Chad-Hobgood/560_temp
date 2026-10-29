@@ -1,5 +1,8 @@
 --cpu Cortex-M0+
 ".\obj\main.o"
+".\obj\project.o"
+".\obj\cli.o"
+".\obj\sampling.o"
 ".\obj\leds.o"
 ".\obj\delay.o"
 ".\obj\uart.o"

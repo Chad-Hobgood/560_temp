@@ -393,6 +393,21 @@
               <FilePath>.\src\main.c</FilePath>
             </File>
             <File>
+              <FileName>project.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\project.c</FilePath>
+            </File>
+            <File>
+              <FileName>CLI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\CLI.c</FilePath>
+            </File>
+            <File>
+              <FileName>sampling.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\sampling.c</FilePath>
+            </File>
+            <File>
               <FileName>LEDs.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\LEDs.c</FilePath>
@@ -476,6 +491,16 @@
               <FileName>project.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\include\project.h</FilePath>
+            </File>
+            <File>
+              <FileName>CLI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\include\CLI.h</FilePath>
+            </File>
+            <File>
+              <FileName>sampling.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\include\sampling.h</FilePath>
             </File>
           </Files>
         </Group>

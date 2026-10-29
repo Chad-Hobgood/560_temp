@@ -1,10 +1,10 @@
 
 Static Call Graph for image .\obj\BasicUI.axf
 
-#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Thu Oct 29 17:09:23 2026
-Maximum Stack Usage =         64 bytes + Unknown(Cycles, Untraceable Function Pointers)
+#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Thu Oct 29 19:33:56 2026
+Maximum Stack Usage =         80 bytes + Unknown(Cycles, Untraceable Function Pointers)
 Call chain for Maximum Stack Depth:
-main => UART2_Write_Unsigned => __aeabi_uidiv
+main => CLI_Send_Data => UART2_Write_Unsigned => __aeabi_uidiv
 
 
 Mutually Recursive functions
@@ -92,6 +92,85 @@ Global Symbols
 
 	__rt_final_exit (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
+	main (Thumb, 228 bytes, Stack size 0 bytes, main.o(.text))
+
+		[Stack]
+
+			Max Depth = 80			Call Chain = main => CLI_Send_Data => UART2_Write_Unsigned => __aeabi_uidiv
+
+
+		[Calls]
+
+			 * CLI_Process
+			 * UART2_Read_Char
+			 * Sampling_Take_Complete
+			 * CLI_Send_Data
+			 * CLI_Show_Prompt
+			 * Init_TPM0
+			 * Init_ADC
+			 * Init_UART2
+			 * Control_RGB_LEDs
+			 * Init_RGB_LEDs
+
+		[Address Reference Count : 1]
+			 * entry9a.o(.ARM.Collect$$$$0000000B)
+
+	Sampling_Arm (Thumb, 36 bytes, Stack size 8 bytes, sampling.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = Sampling_Arm
+
+
+		[Calls]
+
+			 * ADC_Start_Trigger_Monitor
+
+		[Called By]
+
+			 * CLI_Process
+
+	Sampling_Force (Thumb, 36 bytes, Stack size 8 bytes, sampling.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = Sampling_Force
+
+
+		[Calls]
+
+			 * ADC_Start_Single
+
+		[Called By]
+
+			 * CLI_Process
+
+	Sampling_Take_Complete (Thumb, 12 bytes, Stack size 0 bytes, sampling.o(.text))
+
+		[Called By]
+
+			 * main
+
+	Sampling_On_ADC_Complete (Thumb, 192 bytes, Stack size 16 bytes, sampling.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = Sampling_On_ADC_Complete
+
+
+		[Calls]
+
+			 * Start_Sample_Timer
+			 * ADC_Start_Timer_Trigger
+			 * ADC_Trigger_Compare_Above
+			 * Stop_Sample_Timer
+			 * ADC_Stop
+			 * ADC_Start_Single
+
+		[Called By]
+
+			 * ADC0_IRQHandler
+
 	Init_RGB_LEDs (Thumb, 84 bytes, Stack size 0 bytes, leds.o(.text))
 
 		[Called By]
@@ -104,17 +183,75 @@ Global Symbols
 
 			 * main
 
-	UART2_Write_Char (Thumb, 16 bytes, Stack size 0 bytes, uart.o(.text))
+	__scatterload_null (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+	CLI_Show_Prompt (Thumb, 12 bytes, Stack size 8 bytes, cli.o(.text))
+
+		[Stack]
+
+			Max Depth = 8			Call Chain = CLI_Show_Prompt
+
+
+		[Calls]
+
+			 * UART2_Write_String
 
 		[Called By]
 
 			 * main
+
+	CLI_Process (Thumb, 644 bytes, Stack size 24 bytes, cli.o(.text))
+
+		[Stack]
+
+			Max Depth = 72			Call Chain = CLI_Process => UART2_Write_Unsigned => __aeabi_uidiv
+
+
+		[Calls]
+
+			 * Set_Sample_Period
+			 * UART2_Write_Unsigned
+			 * Sampling_Force
+			 * Sampling_Arm
+			 * UART2_Write_String
+			 * UART2_Read_Char
+
+		[Called By]
+
+			 * main
+
+	CLI_Send_Data (Thumb, 176 bytes, Stack size 32 bytes, cli.o(.text))
+
+		[Stack]
+
+			Max Depth = 80			Call Chain = CLI_Send_Data => UART2_Write_Unsigned => __aeabi_uidiv
+
+
+		[Calls]
+
+			 * __aeabi_uidivmod
+			 * __aeabi_uidiv
+			 * UART2_Write_Char
+			 * UART2_Write_Unsigned
+			 * UART2_Write_String
+
+		[Called By]
+
+			 * main
+
+	UART2_Write_Char (Thumb, 16 bytes, Stack size 0 bytes, uart.o(.text))
+
+		[Called By]
+
+			 * CLI_Send_Data
 
 	UART2_Write_String (Thumb, 32 bytes, Stack size 0 bytes, uart.o(.text))
 
 		[Called By]
 
-			 * main
+			 * CLI_Process
+			 * CLI_Send_Data
+			 * CLI_Show_Prompt
 
 	UART2_Write_Unsigned (Thumb, 80 bytes, Stack size 32 bytes, uart.o(.text))
 
@@ -129,7 +266,8 @@ Global Symbols
 
 		[Called By]
 
-			 * main
+			 * CLI_Process
+			 * CLI_Send_Data
 
 	Init_UART2 (Thumb, 88 bytes, Stack size 16 bytes, uart.o(.text))
 
@@ -146,6 +284,7 @@ Global Symbols
 
 		[Called By]
 
+			 * CLI_Process
 			 * main
 
 	UART2_IRQHandler (Thumb, 112 bytes, Stack size 16 bytes, uart.o(.text))
@@ -154,6 +293,91 @@ Global Symbols
 
 			Max Depth = 16			Call Chain = UART2_IRQHandler
 
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Init_TPM0 (Thumb, 104 bytes, Stack size 16 bytes, timers.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = Init_TPM0
+
+
+		[Called By]
+
+			 * main
+
+	Set_Sample_Period (Thumb, 44 bytes, Stack size 0 bytes, timers.o(.text))
+
+		[Called By]
+
+			 * CLI_Process
+
+	Start_Sample_Timer (Thumb, 28 bytes, Stack size 0 bytes, timers.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+
+	Stop_Sample_Timer (Thumb, 16 bytes, Stack size 0 bytes, timers.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+
+	TPM0_IRQHandler (Thumb, 44 bytes, Stack size 0 bytes, timers.o(.text))
+
+		[Address Reference Count : 1]
+			 * startup_mkl25z4.o(RESET)
+
+	Init_ADC (Thumb, 88 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * main
+
+	ADC_Start_Single (Thumb, 24 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+			 * Sampling_Force
+
+	ADC_Start_Timer_Trigger (Thumb, 32 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+
+	ADC_Start_Trigger_Monitor (Thumb, 24 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * Sampling_Arm
+
+	ADC_Trigger_Compare_Above (Thumb, 12 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+
+	ADC_Stop (Thumb, 16 bytes, Stack size 0 bytes, adc.o(.text))
+
+		[Called By]
+
+			 * Sampling_On_ADC_Complete
+
+	ADC0_IRQHandler (Thumb, 36 bytes, Stack size 8 bytes, adc.o(.text))
+
+		[Stack]
+
+			Max Depth = 24			Call Chain = ADC0_IRQHandler => Sampling_On_ADC_Complete
+
+
+		[Calls]
+
+			 * Sampling_On_ADC_Complete
 
 		[Address Reference Count : 1]
 			 * startup_mkl25z4.o(RESET)
@@ -378,110 +602,6 @@ Global Symbols
 		[Address Reference Count : 1]
 			 * startup_mkl25z4.o(RESET)
 
-	__aeabi_uidiv (Thumb, 0 bytes, Stack size 16 bytes, uidiv_div0.o(.text))
-
-		[Stack]
-
-			Max Depth = 16			Call Chain = __aeabi_uidiv
-
-
-		[Called By]
-
-			 * SystemCoreClockUpdate
-			 * UART2_Write_Unsigned
-			 * main
-
-	__aeabi_uidivmod (Thumb, 62 bytes, Stack size 16 bytes, uidiv_div0.o(.text))
-
-		[Stack]
-
-			Max Depth = 16			Call Chain = __aeabi_uidivmod
-
-
-		[Called By]
-
-			 * main
-
-	__scatterload (Thumb, 38 bytes, Stack size 0 bytes, init.o(.text))
-
-		[Calls]
-
-			 * __main_after_scatterload
-
-		[Called By]
-
-			 * _main_scatterload
-
-	__scatterload_rt2 (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
-
-	__scatterload_copy (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
-
-	__scatterload_null (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
-
-	main (Thumb, 980 bytes, Stack size 16 bytes, main.o(.text))
-
-		[Stack]
-
-			Max Depth = 64			Call Chain = main => UART2_Write_Unsigned => __aeabi_uidiv
-
-
-		[Calls]
-
-			 * __aeabi_uidivmod
-			 * __aeabi_uidiv
-			 * Set_Sample_Period
-			 * UART2_Read_Char
-			 * UART2_Write_Char
-			 * UART2_Write_Unsigned
-			 * UART2_Write_String
-			 * Init_TPM0
-			 * Init_ADC
-			 * Init_UART2
-			 * Control_RGB_LEDs
-			 * Init_RGB_LEDs
-
-		[Address Reference Count : 1]
-			 * entry9a.o(.ARM.Collect$$$$0000000B)
-
-	Init_TPM0 (Thumb, 100 bytes, Stack size 16 bytes, timers.o(.text))
-
-		[Stack]
-
-			Max Depth = 16			Call Chain = Init_TPM0
-
-
-		[Called By]
-
-			 * main
-
-	Set_Sample_Period (Thumb, 44 bytes, Stack size 0 bytes, timers.o(.text))
-
-		[Called By]
-
-			 * main
-
-	Start_Sample_Timer (Thumb, 20 bytes, Stack size 0 bytes, timers.o(.text), UNUSED)
-
-	Stop_Sample_Timer (Thumb, 12 bytes, Stack size 0 bytes, timers.o(.text), UNUSED)
-
-	TPM0_IRQHandler (Thumb, 36 bytes, Stack size 0 bytes, timers.o(.text))
-
-		[Address Reference Count : 1]
-			 * startup_mkl25z4.o(RESET)
-
-	Init_ADC (Thumb, 88 bytes, Stack size 0 bytes, adc.o(.text))
-
-		[Called By]
-
-			 * main
-
-	Start_ADC_Conversion (Thumb, 24 bytes, Stack size 0 bytes, adc.o(.text), UNUSED)
-
-	ADC0_IRQHandler (Thumb, 28 bytes, Stack size 0 bytes, adc.o(.text))
-
-		[Address Reference Count : 1]
-			 * startup_mkl25z4.o(RESET)
-
 	SystemInit (Thumb, 188 bytes, Stack size 16 bytes, system_mkl25z4.o(.text))
 
 		[Stack]
@@ -497,6 +617,44 @@ Global Symbols
 		[Calls]
 
 			 * __aeabi_uidiv
+
+	__aeabi_uidiv (Thumb, 0 bytes, Stack size 16 bytes, uidiv_div0.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = __aeabi_uidiv
+
+
+		[Called By]
+
+			 * SystemCoreClockUpdate
+			 * UART2_Write_Unsigned
+			 * CLI_Send_Data
+
+	__aeabi_uidivmod (Thumb, 62 bytes, Stack size 16 bytes, uidiv_div0.o(.text))
+
+		[Stack]
+
+			Max Depth = 16			Call Chain = __aeabi_uidivmod
+
+
+		[Called By]
+
+			 * CLI_Send_Data
+
+	__scatterload (Thumb, 38 bytes, Stack size 0 bytes, init.o(.text))
+
+		[Calls]
+
+			 * __main_after_scatterload
+
+		[Called By]
+
+			 * _main_scatterload
+
+	__scatterload_rt2 (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+
+	__scatterload_copy (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
 	__scatterload_zeroinit (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 

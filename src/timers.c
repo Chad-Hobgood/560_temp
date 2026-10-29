@@ -2,11 +2,12 @@
 #include "project.h"
 #include "timers.h"
 
-/* CLOCK_SETUP=1 gives TPM0 24 clock ticks per microsecond. */
-#define TPM_TICKS_PER_US 24U
+/* CLOCK_SETUP=1 selects a 48 MHz PLL-derived TPM clock.
+   The 24 MHz bus clock drives UART2 and ADC0, not TPM0. */
+#define TPM_TICKS_PER_US 48U
 
 void Init_TPM0(uint16_t period_us) {
-    /* Enable TPM0 and select the 24 MHz PLL/FLL timer clock. */
+    /* Enable TPM0 and select the 48 MHz PLL-derived timer clock. */
     SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK;
     SIM->SOPT2 = (SIM->SOPT2 & ~SIM_SOPT2_TPMSRC_MASK) |
                  SIM_SOPT2_TPMSRC(1);
@@ -15,7 +16,7 @@ void Init_TPM0(uint16_t period_us) {
     TPM0->SC = TPM_SC_TOIE_MASK; /* Enable overflow IRQ; keep timer stopped. */
 
     /* Route TPM0 overflows to the interrupt handler. */
-    NVIC_SetPriority(TPM0_IRQn, 2);
+    NVIC_SetPriority(TPM0_IRQn, 1);
     NVIC_ClearPendingIRQ(TPM0_IRQn);
     NVIC_EnableIRQ(TPM0_IRQn);
 }
@@ -37,19 +38,23 @@ void Start_Sample_Timer(void) {
     /* Start a fresh period; clear an old overflow before enabling counting. */
     TPM0->CNT = 0;
     TPM0->SC |= TPM_SC_TOF_MASK; /* Write one to clear TOF. */
+    NVIC_ClearPendingIRQ(TPM0_IRQn);
     TPM0->SC = TPM_SC_TOIE_MASK | TPM_SC_CMOD(1);
 }
 
 void Stop_Sample_Timer(void) {
-    /* Leave the clock and interrupt configuration in place for a restart. */
-    TPM0->SC &= ~TPM_SC_CMOD_MASK;
+    /* Stop counting and clear any overflow left at the capture boundary. */
+    TPM0->SC = TPM_SC_TOIE_MASK | TPM_SC_TOF_MASK;
+    NVIC_ClearPendingIRQ(TPM0_IRQn);
 }
 
 void TPM0_IRQHandler(void) {
     /* The TPM0 vector can serve other sources; only count overflows here. */
     if (TPM0->SC & TPM_SC_TOF_MASK) {
         TPM0->SC |= TPM_SC_TOF_MASK; /* Write one to clear TOF. */
-        ++debug_timer_count;
-        debug_irq_flags |= DEBUG_IRQ_TIMER;
+        if (app_state == APP_RECORDING) {
+            ++debug_timer_count;
+            debug_irq_flags |= DEBUG_IRQ_TIMER;
+        }
     }
 }

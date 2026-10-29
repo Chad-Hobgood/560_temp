@@ -12,9 +12,6 @@
 #define PROJECT_TRIGGER_ADC_CODE  ((PROJECT_TRIGGER_MV * 65535UL + \
                                     PROJECT_ADC_REFERENCE_MV / 2U) / \
                                    PROJECT_ADC_REFERENCE_MV)
-/* Set to 1 to generate one ADC interrupt and recurring TPM0 interrupts. */
-#define PROJECT_DEBUG_START_INTERRUPTS 0U
-
 #define DEBUG_IRQ_UART_RX    (1UL << 0)
 #define DEBUG_IRQ_UART_ERROR (1UL << 1)
 #define DEBUG_IRQ_ADC        (1UL << 2)
@@ -37,6 +34,9 @@ extern volatile uint32_t debug_timer_count;
 extern volatile uint8_t debug_uart_byte;
 extern volatile uint8_t debug_uart_status;
 extern volatile uint16_t debug_adc_value;
+extern volatile uint32_t debug_sample_overrun_count;
+extern volatile uint32_t debug_trigger_count;
+extern volatile uint32_t debug_capture_complete_count;
 
 extern uint16_t samples[PROJECT_MAX_SAMPLES];
 extern uint16_t sample_count;
