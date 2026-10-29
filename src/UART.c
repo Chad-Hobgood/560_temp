@@ -1,76 +1,70 @@
-#include "UART.h"
+#include <MKL25Z4.h>
 #include <stdio.h>
+#include "UART.h"
+#include "project.h"
 
-#if 0
-struct __FILE
-{
-  int handle;
-};
-#endif
+/* 24 MHz bus / (16 samples per bit * 115200 baud) rounds to 13. */
+#define UART2_BAUD_DIVISOR 13U
 
-FILE __stdout;  //Use with printf
-FILE __stdin;		//use with fget/sscanf, or scanf
+FILE __stdout; /* Lets printf send text through fputc. */
 
-
-//Retarget the fputc method to use the UART2
-int fputc(int ch, FILE *f){
-	while(!(UART2->S1 & UART_S1_TDRE_MASK) && !(UART2->S1 & UART_S1_TC_MASK));
-	UART2->D = ch;
-	return ch;
+int fputc(int ch, FILE *stream) {
+    (void)stream;
+    /* Wait until the transmit register can accept the next character. */
+    while ((UART2->S1 & UART_S1_TDRE_MASK) == 0U) {
+    }
+    UART2->D = (uint8_t)ch;
+    return ch;
 }
 
-//Retarget the fgetc method to use the UART2
-int fgetc(FILE *f){
-	while(!(UART2->S1 & UART_S1_RDRF_MASK));
-	return UART2->D;
+void Init_UART2(void) {
+    /* Turn on clocks and stop UART2 while changing its configuration. */
+    SIM->SCGC4 |= SIM_SCGC4_UART2_MASK;
+    SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;
+    UART2->C2 = 0;
+
+    /* Pin mux 3 connects PTD2 to RX and PTD3 to TX. */
+    PORTD->PCR[2] = PORT_PCR_MUX(3);
+    PORTD->PCR[3] = PORT_PCR_MUX(3);
+
+    /* SBR=13 gives about 115385 baud; BDH=0 selects one stop bit.
+       C1=0 selects eight data bits, no parity, and normal operation. */
+    UART2->BDH = 0;
+    UART2->BDL = UART2_BAUD_DIVISOR;
+    UART2->C1 = 0;
+    /* Report UART errors through the same IRQ as received characters. */
+    UART2->C3 = UART_C3_ORIE_MASK | UART_C3_NEIE_MASK |
+                UART_C3_FEIE_MASK | UART_C3_PEIE_MASK;
+    UART2->S2 = 0;
+
+    /* Enable the NVIC line before enabling UART receive interrupts. */
+    NVIC_SetPriority(UART2_IRQn, 3);
+    NVIC_ClearPendingIRQ(UART2_IRQn);
+    NVIC_EnableIRQ(UART2_IRQn);
+    UART2->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK | UART_C2_RIE_MASK;
 }
 
+void UART2_IRQHandler(void) {
+    uint8_t status = UART2->S1;
+    uint8_t value;
+    const uint8_t error_mask = UART_S1_OR_MASK | UART_S1_NF_MASK |
+                               UART_S1_FE_MASK | UART_S1_PF_MASK;
 
-void Init_UART2(uint32_t baud_rate) {
-	uint16_t sbr;
-	uint8_t temp;
-	
-	// Enable clock gating for UART2 and Port D
-	SIM->SCGC4 |= SIM_SCGC4_UART2_MASK; 										
-	SIM->SCGC5 |= SIM_SCGC5_PORTD_MASK;											
-	
-	// Make sure transmitter and receiver are disabled before init
-	UART2->C2 &= ~UART_C2_TE_MASK & ~UART_C2_RE_MASK; 		
-	
-	// Set pins D2, D3 to UART2 Rx and Tx
-	PORTD->PCR[2] = PORT_PCR_ISF_MASK | PORT_PCR_MUX(3); // Rx
-	PORTD->PCR[3] = PORT_PCR_ISF_MASK | PORT_PCR_MUX(3); // Tx
-	
-	// Set baud rate, oversampling ratio, stop bits
-	sbr = (uint16_t)(((BUS_CLOCK)/(baud_rate * UART_OVERSAMPLE_RATE))+0.5); 			
-	UART2->BDH = UART_BDH_SBNS(1);
+    /* Nothing to consume if neither a byte nor an error arrived. */
+    if ((status & (UART_S1_RDRF_MASK | error_mask)) == 0U) {
+        return;
+    }
 
-	UART2->BDH |= UART_BDH_SBR(0);
-	UART2->BDL = UART_BDL_SBR(5);
-
-	// Disable interrupts for RX active edge and LIN break detect, select one stop bit
-	UART2->BDH |= UART_BDH_RXEDGIE(0) | UART_BDH_SBNS(0) | UART_BDH_LBKDIE(0);
-	
-	// Don't enable loopback mode, use 8 data bit mode, don't use parity
-	UART2->C1 = UART_C1_LOOPS(0) | UART_C1_M(0) | UART_C1_PE(0); 
-	// Don't invert transmit data, don't enable interrupts for errors
-	UART2->C3 = UART_C3_TXINV(0) | UART_C3_ORIE(0)| UART_C3_NEIE(0) 
-			| UART_C3_FEIE(0) | UART_C3_PEIE(0);
-
-	/*
-	// Clear error flags
-	UART2->S1 |= (uint8_t) (UART_S1_OR_MASK | UART_S1_NF_MASK | 
-									UART_S1_FE_MASK | UART_S1_PF_MASK);
-	*/
-	
-	// Do not invert received data
-	UART2->S2 = UART_S2_RXINV(0); 
-	
-	// Enable UART receiver and transmitter
-	UART2->C2 |= UART_C2_RE(1) | UART_C2_TE(1);	
-	
-	// Clear the UART RDRF flag
-	temp = UART2->S2;
-	temp = UART2->D;
-
+    /* Reading S1, then D, clears the receive and error status bits. */
+    value = UART2->D;
+    debug_uart_status = status;
+    if ((status & error_mask) != 0U) {
+        /* Preserve the error for inspection; discard the bad byte. */
+        ++debug_uart_error_count;
+        debug_irq_flags |= DEBUG_IRQ_UART_ERROR;
+    } else {
+        debug_uart_byte = value;
+        ++debug_uart_rx_count;
+        debug_irq_flags |= DEBUG_IRQ_UART_RX;
+    }
 }

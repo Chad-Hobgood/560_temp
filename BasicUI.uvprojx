@@ -420,7 +420,12 @@
             <File>
               <FileName>ADC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\ADC.c</FilePath>
+              <FilePath>.\src\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>Comparitor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Comparitor.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -460,7 +465,12 @@
             <File>
               <FileName>ADC.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\ADC.h</FilePath>
+              <FilePath>.\include\ADC.h</FilePath>
+            </File>
+            <File>
+              <FileName>Comparitor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\include\Comparitor.h</FilePath>
             </File>
           </Files>
         </Group>

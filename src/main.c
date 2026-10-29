@@ -1,109 +1,70 @@
-/*----------------------------------------------------------------------------
- *----------------------------------------------------------------------------*/
-#include <MKL25Z4.H>
-#include <stdio.h>
-#include "gpio_defs.h"
+#include <MKL25Z4.h>
+#include "ADC.h"
 #include "LEDs.h"
 #include "UART.h"
-#include "DAC.h"
+#include "project.h"
 #include "timers.h"
-#include "delay.h"
-#include "ADC.h"
 
-#define SAMPLES_TO_AVERAGE (25)
+/* Watch these variables in the debugger. Interrupt handlers update them. */
+volatile uint8_t app_state = APP_CLI;
+volatile uint32_t debug_irq_flags = 0;
+volatile uint32_t debug_uart_rx_count = 0;
+volatile uint32_t debug_uart_error_count = 0;
+volatile uint32_t debug_adc_count = 0;
+volatile uint32_t debug_timer_count = 0;
+volatile uint8_t debug_uart_byte = 0;
+volatile uint8_t debug_uart_status = 0;
+volatile uint16_t debug_adc_value = 0;
 
-volatile int conv_complete=0;
-unsigned int res_min=0xffff, res_max = 0;
-float P3V3_voltage = 0.0;
-volatile int do_convert = 0, do_print = 0, do_calculate = 0;
-volatile uint32_t ADC_temp = 0;
+/* Recording settings from the project specification. */
+uint16_t samples[PROJECT_MAX_SAMPLES];
+uint16_t sample_count = PROJECT_DEFAULT_SAMPLES;
+uint16_t sample_period_us = PROJECT_DEFAULT_PERIOD_US;
+uint8_t sample_channel = PROJECT_DEFAULT_CHANNEL;
 
-void Misc(void) {
-	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
-	PORTA->PCR[12] &= ~PORT_PCR_MUX_MASK;
-	PORTA->PCR[12] |= PORT_PCR_MUX(1);
-	GPIOA->PDDR |= 1 << 12;
-	GPIOA->PCOR = 1 << 12;
+static void Show_State(uint8_t state) {
+    /* The board LEDs are active low; Control_RGB_LEDs handles that detail. */
+    switch (state) {
+        case APP_CLI:
+            Control_RGB_LEDs(0, 0, 1); /* Blue */
+            break;
+        case APP_AWAIT_TRIGGER:
+            Control_RGB_LEDs(1, 1, 0); /* Yellow */
+            break;
+        case APP_RECORDING:
+            Control_RGB_LEDs(0, 1, 0); /* Green */
+            break;
+        case APP_SEND_DATA:
+            Control_RGB_LEDs(1, 0, 1); /* Magenta */
+            break;
+        default:
+            Control_RGB_LEDs(0, 0, 0); /* Invalid state: LEDs off. */
+            break;
+    }
 }
 
+int main(void) {
+    uint8_t shown_state = APP_CLI;
 
+    /* Initialize the serial link, ADC, and sample timer once at startup. */
+    Init_RGB_LEDs();
+    Show_State(shown_state);
+    Init_UART2();
+    Init_ADC();
+    Init_TPM0(sample_period_us);
+#if PROJECT_DEBUG_START_INTERRUPTS
+    /* Optional smoke test: one ADC result and recurring timer ticks. */
+    Start_ADC_Conversion(sample_channel);
+    Start_Sample_Timer();
+#endif
 
-void Convert(void) {
-	conv_complete = 0;
-	ADC0->SC1[0] = ADC_SC1_AIEN(1) | ADC_SC1_ADCH(27); // start conversion on channel 27 (Bandgap reference)
-}
-
-
-
-float Calculate(void) {
-	float vrail;
-	uint32_t result;
-	
-	result = ADC_temp; // ADC0->R[0];
-	// Update minimum and maximum results 
-	if (result < res_min)
-		res_min = result;
-	if (result > res_max)
-		res_max = result;
-	vrail = (1.0/result)*4096;
-	do_print++;
-	return vrail;
-}
-
-void Print(float voltage) {
-	static float sum=0.0;
-	static int count=0;
-	
-	// Make LED red while printing out through serial port
-	Control_RGB_LEDs(1, 2, 2);
-	// Print out [minimum|maximum] range 
-	// printf("[%5d <-%4d -> %5d] %4d. ", res_min, res_max - res_min, res_max);
-	printf("P3V3 Rail is at %6.4d V", voltage); 
-	
-	sum += voltage;
-	if (++count == SAMPLES_TO_AVERAGE){
-		printf(" --- Average %f over %d samples\n\r", sum/count, SAMPLES_TO_AVERAGE);
-		sum = 0.0;
-		count = 0;
-	} else
-		printf("\n\r"); 
-
-	Control_RGB_LEDs(0, 2, 2);
-}	
-
-/*----------------------------------------------------------------------------
-  MAIN function
- *----------------------------------------------------------------------------*/
-int main (void) {
-	Init_RGB_LEDs();
-	Control_RGB_LEDs(1, 1, 0); // Yellow
-	Misc();
-	//  Calibrate_ADC(); 
-	Init_ADC(); 
-	Init_UART2(57600); 
-	Control_RGB_LEDs(1, 0, 0); // Red
-	Init_DAC();
-	Control_RGB_LEDs(0, 1, 1); // Cyan
-	Init_LPTMR(1000);
-	Control_RGB_LEDs(1, 0, 1); // Magenta
-	printf("\n\rPlease debug me!\n\r");
-	Control_RGB_LEDs(0, 1, 0); // Green
-	Delay(3000);
-	
-	Start_LPTMR();
-	
-	while (1) {
-		if (do_convert> 0) {
-			do_convert--;
-			Convert();
-		}
-		if (do_calculate > 0) {
-			do_calculate--;
-			P3V3_voltage = Calculate();
-		}
-		if (do_print > 0) {
-			Print(P3V3_voltage); 
-			do_print = 0;
-		}
-	}
+    /* For now, the foreground only keeps the LED color in sync with state.
+       IRQ flags and counters remain available for debugger inspection. */
+    for (;;) {
+        uint8_t current_state = app_state;
+        if (current_state != shown_state) {
+            shown_state = current_state;
+            Show_State(current_state);
+        }
+    }
 }
