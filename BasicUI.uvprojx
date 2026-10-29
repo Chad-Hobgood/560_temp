@@ -472,6 +472,11 @@
               <FileType>5</FileType>
               <FilePath>.\include\Comparitor.h</FilePath>
             </File>
+            <File>
+              <FileName>project.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\include\project.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

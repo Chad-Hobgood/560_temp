@@ -1,20 +1,43 @@
 #include <MKL25Z4.h>
-#include <stdio.h>
 #include "UART.h"
 #include "project.h"
 
 /* 24 MHz bus / (16 samples per bit * 115200 baud) rounds to 13. */
 #define UART2_BAUD_DIVISOR 13U
+#define UART_RX_BUFFER_SIZE 128U
+#define UART_RX_BUFFER_MASK (UART_RX_BUFFER_SIZE - 1U)
 
-FILE __stdout; /* Lets printf send text through fputc. */
+/* The ISR writes at rx_head; the foreground reads at rx_tail. */
+static volatile uint8_t rx_buffer[UART_RX_BUFFER_SIZE];
+static volatile uint8_t rx_head = 0;
+static volatile uint8_t rx_tail = 0;
 
-int fputc(int ch, FILE *stream) {
-    (void)stream;
+
+void UART2_Write_Char(char value) {
     /* Wait until the transmit register can accept the next character. */
     while ((UART2->S1 & UART_S1_TDRE_MASK) == 0U) {
     }
-    UART2->D = (uint8_t)ch;
-    return ch;
+    UART2->D = (uint8_t)value;
+}
+
+void UART2_Write_String(const char *text) {
+    while (*text != '\0') {
+        UART2_Write_Char(*text++);
+    }
+}
+
+void UART2_Write_Unsigned(uint32_t value) {
+    char digits[10];
+    uint8_t count = 0;
+
+    do {
+        digits[count++] = (char)('0' + value % 10U);
+        value /= 10U;
+    } while (value != 0U);
+
+    while (count > 0U) {
+        UART2_Write_Char(digits[--count]);
+    }
 }
 
 void Init_UART2(void) {
@@ -44,6 +67,18 @@ void Init_UART2(void) {
     UART2->C2 = UART_C2_TE_MASK | UART_C2_RE_MASK | UART_C2_RIE_MASK;
 }
 
+int UART2_Read_Char(void) {
+    uint8_t value;
+
+    if (rx_tail == rx_head) {
+        return -1;
+    }
+
+    value = rx_buffer[rx_tail];
+    rx_tail = (uint8_t)((rx_tail + 1U) & UART_RX_BUFFER_MASK);
+    return value;
+}
+
 void UART2_IRQHandler(void) {
     uint8_t status = UART2->S1;
     uint8_t value;
@@ -63,8 +98,17 @@ void UART2_IRQHandler(void) {
         ++debug_uart_error_count;
         debug_irq_flags |= DEBUG_IRQ_UART_ERROR;
     } else {
+        uint8_t next_head = (uint8_t)((rx_head + 1U) & UART_RX_BUFFER_MASK);
         debug_uart_byte = value;
         ++debug_uart_rx_count;
         debug_irq_flags |= DEBUG_IRQ_UART_RX;
+        if (next_head == rx_tail) {
+            /* Keep existing bytes if a fast sender fills the buffer. */
+            ++debug_uart_drop_count;
+            debug_irq_flags |= DEBUG_IRQ_UART_DROP;
+        } else {
+            rx_buffer[rx_head] = value;
+            rx_head = next_head;
+        }
     }
 }

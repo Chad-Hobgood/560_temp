@@ -19,6 +19,7 @@
 #define DEBUG_IRQ_UART_ERROR (1UL << 1)
 #define DEBUG_IRQ_ADC        (1UL << 2)
 #define DEBUG_IRQ_TIMER      (1UL << 3)
+#define DEBUG_IRQ_UART_DROP  (1UL << 4)
 
 /* Values stored in the global app_state variable. */
 #define APP_CLI           0U
@@ -30,6 +31,7 @@ extern volatile uint8_t app_state;
 extern volatile uint32_t debug_irq_flags;
 extern volatile uint32_t debug_uart_rx_count;
 extern volatile uint32_t debug_uart_error_count;
+extern volatile uint32_t debug_uart_drop_count;
 extern volatile uint32_t debug_adc_count;
 extern volatile uint32_t debug_timer_count;
 extern volatile uint8_t debug_uart_byte;
@@ -40,5 +42,6 @@ extern uint16_t samples[PROJECT_MAX_SAMPLES];
 extern uint16_t sample_count;
 extern uint16_t sample_period_us;
 extern uint8_t sample_channel;
+extern volatile uint16_t recorded_count;
 
 #endif

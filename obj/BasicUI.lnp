@@ -6,6 +6,7 @@
 ".\obj\timers.o"
 ".\obj\dac.o"
 ".\obj\adc.o"
+".\obj\comparitor.o"
 ".\obj\startup_mkl25z4.o"
 ".\obj\system_mkl25z4.o"
 --library_type=microlib --strict --scatter ".\obj\BasicUI.sct"

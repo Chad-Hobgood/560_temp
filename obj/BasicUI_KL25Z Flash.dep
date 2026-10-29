@@ -1,60 +1,57 @@
 Dependencies for Project 'BasicUI', Target 'KL25Z Flash': (DO NOT MODIFY !)
 CompilerVersion: 6240000::V6.24::ARMCLANG
-F (.\src\main.c)(0x6AE200AC)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/main.o -MMD)
-I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.H)(0x6AC29CCC)
+F (.\src\main.c)(0x6AE3B5C2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/main.o -MMD)
+I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
-I (include\gpio_defs.h)(0x6AE200A4)
+I (include\ADC.h)(0x6AE39130)
 I (include\LEDs.h)(0x6AE1FAD3)
-I (include\UART.h)(0x6AE1FAD3)
-I (include\DAC.h)(0x6AE1FAD3)
-I (include\timers.h)(0x6AE1FAD3)
-I (include\delay.h)(0x6AE1FAD3)
+I (include\UART.h)(0x6AE3B5C2)
+I (include\project.h)(0x6AE3B16B)
+I (include\timers.h)(0x6AE39130)
 F (.\src\LEDs.c)(0x6AE1FAD3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/leds.o -MMD)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.H)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
 I (include\LEDs.h)(0x6AE1FAD3)
-I (include\gpio_defs.h)(0x6AE200A4)
+I (include\gpio_defs.h)(0x6AE20159)
 F (.\src\delay.c)(0x6AE1FAD3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/delay.o -MMD)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.H)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
-F (.\src\UART.c)(0x6AE1FAD3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/uart.o -MMD)
-I (include\UART.h)(0x6AE1FAD3)
-I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.H)(0x6AC29CCC)
-I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
-I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
-F (.\src\timers.c)(0x6AE1FDBE)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/timers.o -MMD)
-I (include\timers.h)(0x6AE1FAD3)
+F (.\src\UART.c)(0x6AE3B5C2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/uart.o -MMD)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
-I (include\LEDs.h)(0x6AE1FAD3)
-I (include\GPIO_defs.h)(0x6AE200A4)
-I (include\DAC.h)(0x6AE1FAD3)
+I (include\UART.h)(0x6AE3B5C2)
+I (include\project.h)(0x6AE3B16B)
+F (.\src\timers.c)(0x6AE393F7)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/timers.o -MMD)
+I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
+I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
+I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
+I (include\project.h)(0x6AE3B16B)
+I (include\timers.h)(0x6AE39130)
 F (.\src\DAC.c)(0x6AE1FAD3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/dac.o -MMD)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
 I (include\DAC.h)(0x6AE1FAD3)
-F (.\ADC.c)(0x6AE20083)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/adc.o -MMD)
-I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.H)(0x6AC29CCC)
+F (.\src\ADC.c)(0x6AE393DA)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/adc.o -MMD)
+I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0plus.h)(0x6AC29A84)
 I (RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h)(0x6AE1FAD3)
-I (include\gpio_defs.h)(0x6AE200A4)
-I (include\LEDs.h)(0x6AE1FAD3)
-I (include\UART.h)(0x6AE1FAD3)
-I (include\DAC.h)(0x6AE1FAD3)
-I (include\timers.h)(0x6AE1FAD3)
-I (include\delay.h)(0x6AE1FAD3)
-F (.\include\gpio_defs.h)(0x6AE200A4)()
+I (include\ADC.h)(0x6AE39130)
+I (include\project.h)(0x6AE3B16B)
+F (.\src\Comparitor.c)(0x6AE201AE)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/comparitor.o -MMD)
+F (.\include\gpio_defs.h)(0x6AE20159)()
 F (.\include\delay.h)(0x6AE1FAD3)()
 F (.\include\LEDs.h)(0x6AE1FAD3)()
-F (.\include\timers.h)(0x6AE1FAD3)()
-F (.\include\UART.h)(0x6AE1FAD3)()
+F (.\include\timers.h)(0x6AE39130)()
+F (.\include\UART.h)(0x6AE3B5C2)()
 F (.\include\DAC.h)(0x6AE1FAD3)()
-F (.\ADC.h)(0x6AE200AC)()
+F (.\include\ADC.h)(0x6AE39130)()
+F (.\include\Comparitor.h)(0x6AE201ED)()
+F (.\include\project.h)(0x6AE3B16B)()
 F (RTE/Device/MKL25Z128xxx4/startup_MKL25Z4.s)(0x6AE1FAD3)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --pd "__MICROLIB SETA 1" --diag_suppress=A1950W-I.\RTE\Device\MKL25Z128xxx4-I.\RTE\_KL25Z_Flash-IC:\Users\chadx\AppData\Local\Arm\Packs\ARM\CMSIS\6.3.0\CMSIS\Core\Include-IC:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include--pd "__UVISION_VERSION SETA 543"--pd "MKL25Z128xxx4 SETA 1"--pd "_RTE_ SETA 1"-o .\obj\startup_mkl25z4.o--depend .\obj\startup_mkl25z4.d)
 F (RTE/Device/MKL25Z128xxx4/system_MKL25Z4.c)(0x6AE1FAD3)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m0plus -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -D__MICROLIB -gdwarf-4 -O1 -fno-function-sections -w -I include-I./RTE/Device/MKL25Z128xxx4-I./RTE/_KL25Z_Flash-IC:/Users/chadx/AppData/Local/Arm/Packs/ARM/CMSIS/6.3.0/CMSIS/Core/Include-IC:/Users/chadx/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.1/Device/Include-D__UVISION_VERSION="543" -DMKL25Z128xxx4 -D_RTE_-o ./obj/system_mkl25z4.o -MMD)
 I (C:\Users\chadx\AppData\Local\Arm\Packs\Keil\Kinetis_KLxx_DFP\1.15.1\Device\Include\MKL25Z4.h)(0x6AC29CCC)
