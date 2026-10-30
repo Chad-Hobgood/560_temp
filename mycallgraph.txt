@@ -1,7 +1,7 @@
 
 Static Call Graph for image .\obj\BasicUI.axf
 
-#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Thu Oct 29 19:33:56 2026
+#<CALLGRAPH># ARM Linker, 6240002: Last Updated: Thu Oct 29 20:29:09 2026
 Maximum Stack Usage =         80 bytes + Unknown(Cycles, Untraceable Function Pointers)
 Call chain for Maximum Stack Depth:
 main => CLI_Send_Data => UART2_Write_Unsigned => __aeabi_uidiv
